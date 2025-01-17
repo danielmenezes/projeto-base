@@ -1,0 +1,55 @@
+<mat-form-field appearance="fill">
+  <mat-label> {{ label }} </mat-label>
+
+		@if(type === "number") {
+			<input matInput
+				type="text"
+				[placeholder]="placeholder"
+				[formControl]="control"
+				[required]="required"
+				mask="separator.0"
+				thousandSeparator=""
+				[dropSpecialCharacters]="true" 
+				(input)="onInputChange()"
+				(blur)="onInputTouche()"
+			/>
+		}
+
+		@else if(type === "coin") {
+			<input matInput
+				type="text"
+				[placeholder]="placeholder"
+				[formControl]="control"
+				[required]="required"
+				mask="separator.2"
+				thousandSeparator="."
+				decimalMarker=","
+				prefix="R$ "
+				[dropSpecialCharacters]="false"
+				[allowNegativeNumbers]="allowNegativeNumbers"
+				(input)="onInputChange()"
+				(blur)="onInputTouche()"
+			/>
+		}
+
+		@else {
+			<input matInput
+				[type]="type"
+				[placeholder]="placeholder"
+				[formControl]="control"
+				[required]="required"
+				(input)="onInputChange()"
+				(blur)="onInputTouche()"
+			>
+		}
+		
+		@if(characterCounter && maxLength) {
+			<mat-hint align="end">{{ control.value?.length }} / {{ maxLength }}</mat-hint>
+		}
+
+		@if(control.hasError('required') && showMessageError) {
+			<mat-error> Campo obrigatório! </mat-error>
+		} @else if(messageError && showMessageError) {
+			<mat-error> {{ messageError }} </mat-error>
+		}
+  </mat-form-field>
