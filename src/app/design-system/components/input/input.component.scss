@@ -4,3 +4,14 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+::ng-deep .input-table .mat-mdc-form-field-infix {
+  padding-top: 3px !important;
+  padding-bottom: 2px !important;
+  min-height: 10px !important;
+}
+
+::ng-deep .input-table .mat-mdc-form-field-subscript-wrapper {
+  height: 0 !important;
+}

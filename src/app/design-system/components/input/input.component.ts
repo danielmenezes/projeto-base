@@ -3,6 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ControlValueAccessor, FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { CommonModule } from '@angular/common';
 
 type MatInputType =
   | 'color'
@@ -15,7 +16,7 @@ type MatInputType =
 
 @Component({
   selector: 'app-input',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, NgxMaskDirective],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, NgxMaskDirective],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   providers: [provideNgxMask()]
@@ -33,6 +34,7 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() allowNegativeNumbers: boolean = false;
   @Input() max: number = Infinity;
   @Input() min: number = 0;
+  @Input() tableInput: boolean = false;
 
 
   private onChange: any = (value: any) => {};

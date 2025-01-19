@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { InputsComponent } from './inputs/inputs.component';
 import { HttpClient } from '@angular/common/http';
 import { ColumnsTableModel } from './table.model';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +18,7 @@ import { ColumnsTableModel } from './table.model';
     MatSortModule,
     MatButtonModule,
     FormsModule,
-    InputsComponent
+    InputComponent
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
@@ -36,6 +36,7 @@ export class TableComponent implements OnInit {
   currentPage = 0; // Página atual
   sortActive: string | null = null; // Coluna atualmente ordenada
   sortDirection: string | null = null; // Direção da ordenação ('asc' ou 'desc')
+  infinityValue: number = Infinity;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

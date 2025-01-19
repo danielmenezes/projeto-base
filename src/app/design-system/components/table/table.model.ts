@@ -4,12 +4,19 @@ export type TypeInputModel =
   | 'coin';
 
 export interface ConfigFieldModel {
-  type: TypeInputModel;
-  allowNegativeNumbers: boolean;
+  type?: TypeInputModel;
+  allowNegativeNumbers?: boolean;
+  label?: string;
+  placeholder?: string;
+  required?: boolean;
+  maxLength?: number;
+  min?: number;
+  max?: number;
 } 
 
 export interface ColumnsTableModel {
   key: string; 
   label: string; 
-  editable: boolean;
+  editable?: boolean;
+  editableFieldConfig?: ConfigFieldModel;
 }

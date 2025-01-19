@@ -1,5 +1,4 @@
 @if(dataSource.data.length) {
-  <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       
       @for (column of columns; track column.key) {
@@ -10,11 +9,16 @@
           </th>
           <td mat-cell *matCellDef="let element; let i = index;">
             @if(column.editable) {
-              <app-inputs
-                type="coin"
-                [max]="999.99"
-                [min]="-999.99"
-                [allowNegativeNumbers]="true"
+              <app-input
+                [type]="column?.editableFieldConfig?.type || 'text'"
+                [label]="column?.editableFieldConfig?.label || ''"
+                [placeholder]="column?.editableFieldConfig?.placeholder || ''"
+                [required]="column?.editableFieldConfig?.required || false"
+                [maxLength]="column?.editableFieldConfig?.maxLength || infinityValue"
+                [max]="column?.editableFieldConfig?.max || infinityValue"
+                [min]="column?.editableFieldConfig?.min || infinityValue"
+                [allowNegativeNumbers]="column?.editableFieldConfig?.allowNegativeNumbers || false"
+                [tableInput]="true"
                 [(ngModel)]="element[column.key]"
                 (ngModelChange)="onValueChange(element, column.key, i)"
               />
@@ -39,7 +43,6 @@
       showFirstLastButtons
     >
     </mat-paginator>
-  </div>
 } @else {
   <div class="no-data-message">
     Não há dados disponíveis.

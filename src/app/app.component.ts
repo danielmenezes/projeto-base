@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { startsWithValidator } from './design-system/validators/starts-with.validator';
 import { cpfValidator } from './design-system/validators/cpf.validator';
 import { TableComponent } from './design-system/components/table/table.component';
+import { ColumnsTableModel } from './design-system/components/table/table.model';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +32,18 @@ export class AppComponent  {
     console.log(this.form.controls['userName'].value)
   }
 
-  columns = [
+  columns: ColumnsTableModel[] = [
     { key: 'name', label: 'Nome', editable: false },
-    { key: 'age', label: 'Idade', editable: true },
+    { 
+      key: 'age', 
+      label: 'Idade', 
+      editable: true,
+      editableFieldConfig: {
+        type: 'coin',
+        min: -999.99,
+        allowNegativeNumbers: true
+      }
+    },
     { key: 'city', label: 'Cidade', editable: false },
   ];
 
