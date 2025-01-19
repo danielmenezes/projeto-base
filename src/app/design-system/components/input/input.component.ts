@@ -98,7 +98,6 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
         }
 
         this.control.patchValue(numericValue);
-        return;
       }
 
       if (numericValue < this.min) {
@@ -112,7 +111,6 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
         }
 
         this.control.patchValue(numericValue);
-        return;
       }
 
       this.previousValue = value;
