@@ -59,6 +59,7 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
   }
 
   writeValue(value: any): void {
+    this.previousValue = value;
     this.control.patchValue(value || '');
   }
 
@@ -84,39 +85,39 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
         }
       }
 
-      const numericValue = parseFloat(value);
+      let numericValue = parseFloat(value);
 
       if (numericValue > this.max) {
-        if(!Number.isInteger(this.max)) { // Para verificar se o max é um valor em ponto flutuante.
-          const lastDigit = value.slice(-1);
-          value = `${value.slice(0,-1)}.${lastDigit}`;
-          this.control.patchValue(value);
-          this.previousValue = value;
-          this.onChange(value);
+        const lastDigitIndex = value.length - 1;
+        value = `${value.slice(0, lastDigitIndex)}.${value.slice(lastDigitIndex)}`;
+        numericValue = parseFloat(value);
+
+        if (numericValue > this.max) {
+          this.control.patchValue(this.previousValue);
           return;
         }
 
-        this.control.patchValue(this.previousValue);
+        this.control.patchValue(numericValue);
         return;
       }
 
       if (numericValue < this.min) {
-        if(!Number.isInteger(this.min)) { // Para verificar se o max é um valor em ponto flutuante.
-          const lastDigit = value.slice(-1);
-          value = `${value.slice(0,-1)}.${lastDigit}`;
-          this.control.patchValue(value);
-          this.previousValue = value;
-          this.onChange(value);
+        const lastDigitIndex = value.length - 1;
+        value = `${value.slice(0, lastDigitIndex)}.${value.slice(lastDigitIndex)}`;
+        numericValue = parseFloat(value);
+  
+        if (numericValue < this.min) {
+          this.control.patchValue(this.previousValue);
           return;
         }
 
-        this.control.patchValue(this.previousValue);
+        this.control.patchValue(numericValue);
         return;
       }
 
       this.previousValue = value;
     }
-    console.log('aqui')
+
     this.onChange(value);
   }
 
