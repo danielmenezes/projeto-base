@@ -1,0 +1,38 @@
+@if(type === "number") {
+    <input
+        type="text"
+        [placeholder]="placeholder"
+        [formControl]="control"
+        [required]="required"
+        mask="separator.0"
+        thousandSeparator=""
+        [dropSpecialCharacters]="true"
+        (input)="onInputChange()"
+    />
+}
+
+@else if(type === "coin") {
+    <input
+        type="text"
+        [placeholder]="placeholder"
+        [formControl]="control"
+        [required]="required"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+        [dropSpecialCharacters]="false"
+        [allowNegativeNumbers]="allowNegativeNumbers"
+        (input)="onInputChange()"
+    />
+}
+
+@else if(type == 'text') {
+    <input
+        type="text"
+        [placeholder]="placeholder"
+        [formControl]="control"
+        [required]="required"
+        (input)="onInputChange()"
+    >
+}

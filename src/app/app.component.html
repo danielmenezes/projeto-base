@@ -3,14 +3,20 @@
       label="Campo A"
       placeholder="Digite um nome"
       formControlName="userName"
-      type="text"
+      type="coin"
       [maxLength]="10"
       [max]="999.99"
       [min]="-999.99"
+      [allowNegativeNumbers]="true"
       [showMessageError]="showMessageError"
     ></app-input>
 
 </form>
+
+<app-table
+  [columns]="columns"
+  [localData]="dados"
+></app-table>
 
 <button (click)="mostrarErros()"> Testar </button>
 

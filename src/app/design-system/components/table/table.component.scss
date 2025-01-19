@@ -1,0 +1,24 @@
+.table-container {
+  margin: 16px;
+  overflow-x: auto;
+}
+  
+table {
+  width: 100%;
+}
+
+.mat-column-name {
+  text-align: left;
+}
+
+input[matInput] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.no-data-message {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  padding: 20px;
+}
