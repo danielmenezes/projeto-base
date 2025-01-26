@@ -34,7 +34,7 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() allowNegativeNumbers: boolean = false;
   @Input() max: number = Infinity;
   @Input() min: number = 0;
-  @Input() tableInput: boolean = false;
+  @Input() shortInput: boolean = false;
 
 
   private onChange: any = (value: any) => {};

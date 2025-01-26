@@ -6,12 +6,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 
-::ng-deep .input-table .mat-mdc-form-field-infix {
+::ng-deep .short-input .mat-mdc-form-field-infix {
   padding-top: 3px !important;
   padding-bottom: 2px !important;
   min-height: 10px !important;
 }
 
-::ng-deep .input-table .mat-mdc-form-field-subscript-wrapper {
+::ng-deep .short-input .mat-mdc-form-field-subscript-wrapper {
   height: 0 !important;
 }
