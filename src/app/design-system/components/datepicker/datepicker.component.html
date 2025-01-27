@@ -1,0 +1,52 @@
+@if (type === 'date') {
+  <mat-form-field [appearance]="appearance" [ngClass]="{ 'short-datepicker': shortStyle }">
+    @if(!shortStyle) {
+			<mat-label> {{ label }} </mat-label>
+		}
+    <input matInput [formControl]="startDate" [matDatepicker]="picker" [readonly]="true" (dateChange)="onSelectDate()">
+    <mat-datepicker #picker></mat-datepicker>
+    
+    <button mat-icon-button matSuffix 
+      [ngStyle]="{ 'visibility': startDate.value ? 'visible' : 'hidden' }"
+      [disabled]="startDate.value ? false : true"
+      (click)="clearDate()" 
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
+    @if(startDate.hasError('required') && showMessageError) {
+      <mat-error> Campo obrigatório! </mat-error>
+    } @else if(messageError && showMessageError) {
+      <mat-error> {{ messageError }} </mat-error>
+    }
+  </mat-form-field>
+} @else {
+  <mat-form-field [appearance]="appearance" [ngClass]="{ 'short-datepicker': shortStyle }">
+    @if(!shortStyle) {
+			<mat-label> {{ label }} </mat-label>
+		}
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate [formControl]="startDate" placeholder="Data inicial" [readonly]="true" (dateChange)="onSelectDate()">
+      <input matEndDate [formControl]="endDate" placeholder="Data final" [readonly]="true" (dateChange)="onSelectDate()">
+    </mat-date-range-input>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <button mat-icon-button matSuffix 
+      [ngStyle]="{ 'visibility': startDate.value ? 'visible' : 'hidden' }"
+      [disabled]="startDate.value ? false : true"
+      (click)="clearDate()" 
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
+    @if((startDate.hasError('required') || endDate.hasError('required')) && showMessageError) {
+      <mat-error> Campo obrigatório! </mat-error>
+    } @else if(messageError && showMessageError) {
+      <mat-error> {{ messageError }} </mat-error>
+    }
+  </mat-form-field>
+}
