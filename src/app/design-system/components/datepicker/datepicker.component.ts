@@ -36,6 +36,7 @@ export class DatepickerComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() messageError: string = '';
   @Input() appearance: MatFormFieldAppearance = 'fill';
   @Input() shortStyle: boolean = false;
+  @Input() required: boolean = false;
 
   private onChange: any = (value: any) => {};
   private onTouched: any = () => {};

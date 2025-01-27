@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { ColumnsTableModel } from './table.model';
 import { InputComponent } from '../input/input.component';
+import { DatepickerComponent } from '../datepicker/datepicker.component';
 
 @Component({
   selector: 'app-table',
@@ -18,14 +19,15 @@ import { InputComponent } from '../input/input.component';
     MatSortModule,
     MatButtonModule,
     FormsModule,
-    InputComponent
+    InputComponent,
+    DatepickerComponent
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
   @Input() columns: ColumnsTableModel[] = [];
-  @Input() localData: any[] = []; // Dados locais
+  @Input() localData: any[] = []; 
   @Input() dataUrl: string | null = null; // URL para buscar dados
 
   @Output() itemChanged = new EventEmitter();
@@ -33,9 +35,9 @@ export class TableComponent implements OnInit {
   dataSource = new MatTableDataSource<any>([]); // Fonte de dados da tabela
   totalItems = 0; // Total de itens (paginação)
   pageSize = 5; // Itens por página
-  currentPage = 0; // Página atual
+  currentPage = 0;
   sortActive: string | null = null; // Coluna atualmente ordenada
-  sortDirection: string | null = null; // Direção da ordenação ('asc' ou 'desc')
+  sortDirection: string | null = null; 
   infinityValue: number = Infinity;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -61,8 +63,8 @@ export class TableComponent implements OnInit {
     else if(this.dataUrl) {
 
       const params = {
-        page: this.currentPage.toString(),
-        size: this.pageSize.toString(),
+        page: this.currentPage,
+        size: this.pageSize,
         sortColumn: this.sortActive || '',
         sortDirection: this.sortDirection || ''
       };

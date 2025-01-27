@@ -3,7 +3,7 @@
     @if(!shortStyle) {
 			<mat-label> {{ label }} </mat-label>
 		}
-    <input matInput [formControl]="startDate" [matDatepicker]="picker" [readonly]="true" (dateChange)="onSelectDate()">
+    <input matInput [formControl]="startDate" [matDatepicker]="picker" [required]="required" [readonly]="true" (dateChange)="onSelectDate()">
     <mat-datepicker #picker></mat-datepicker>
     
     <button mat-icon-button matSuffix 
@@ -27,9 +27,9 @@
     @if(!shortStyle) {
 			<mat-label> {{ label }} </mat-label>
 		}
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate [formControl]="startDate" placeholder="Data inicial" [readonly]="true" (dateChange)="onSelectDate()">
-      <input matEndDate [formControl]="endDate" placeholder="Data final" [readonly]="true" (dateChange)="onSelectDate()">
+    <mat-date-range-input [rangePicker]="picker" [required]="required">
+      <input matStartDate [formControl]="startDate" placeholder="data inicial" [readonly]="true" (dateChange)="onSelectDate()">
+      <input matEndDate [formControl]="endDate" placeholder="data final" [readonly]="true" (dateChange)="onSelectDate()">
     </mat-date-range-input>
     <mat-date-range-picker #picker></mat-date-range-picker>
 

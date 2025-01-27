@@ -1,7 +1,13 @@
 export type TypeInputModel =
   | 'number'
   | 'text'
-  | 'coin';
+  | 'coin'
+  | 'calendar'
+  | 'checkbox';
+
+export type TypeDateModel =
+  | 'date'
+  | 'range-date'
 
 export interface ConfigFieldModel {
   type?: TypeInputModel;
@@ -12,6 +18,7 @@ export interface ConfigFieldModel {
   maxLength?: number;
   min?: number;
   max?: number;
+  typeDate?: TypeDateModel;
 } 
 
 export interface ColumnsTableModel {

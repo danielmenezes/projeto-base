@@ -9,9 +9,19 @@
       [min]="-999.99"
       [allowNegativeNumbers]="true"
       [showMessageError]="showMessageError"
+      [required]="true"
     ></app-input>
 
+    <app-datepicker 
+      type="range-date"
+      label="Date de abertura"
+      formControlName="date"
+      [showMessageError]="showMessageError"
+      [required]="true"
+    >
+    </app-datepicker>
 </form>
+
 
 <app-table
   [columns]="columns"

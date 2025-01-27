@@ -8,10 +8,19 @@ import { startsWithValidator } from './design-system/validators/starts-with.vali
 import { cpfValidator } from './design-system/validators/cpf.validator';
 import { TableComponent } from './design-system/components/table/table.component';
 import { ColumnsTableModel } from './design-system/components/table/table.model';
+import { DatepickerComponent } from './design-system/components/datepicker/datepicker.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ReactiveFormsModule, FormsModule, MatFormFieldModule, InputComponent, TableComponent],
+  imports: [
+    RouterOutlet, 
+    ReactiveFormsModule, 
+    FormsModule, 
+    MatFormFieldModule, 
+    InputComponent, 
+    TableComponent, 
+    DatepickerComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -23,13 +32,17 @@ export class AppComponent  {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      userName: [{ value: '', disabled: false }, [Validators.required, cpfValidator]], 
+      userName: [{ value: '', disabled: false }, [Validators.required]], 
+      date: [{ value: [
+        new Date(), 
+        new Date()
+      ], disabled: false }, [Validators.required]], 
     });
   }
 
   mostrarErros() {
     this.showMessageError = true;
-    console.log(this.form.controls['userName'].value)
+    console.log(this.form.controls['date'].value)
   }
 
   columns: ColumnsTableModel[] = [
@@ -40,15 +53,24 @@ export class AppComponent  {
       editable: true,
       editableFieldConfig: {
         type: 'coin',
+        max: 999.99,
         min: -999.99,
         allowNegativeNumbers: true
       }
     },
     { key: 'city', label: 'Cidade', editable: false },
+    { 
+      key: 'date', 
+      label: 'Data', 
+      editable: true,
+      editableFieldConfig: {
+        type: 'calendar'
+      }
+    },
   ];
 
   dados = [
-    { name: 'João', age: 25, city: 'São Paulo' },
+    { name: 'João', age: 25, city: 'São Paulo', date: null },
     { name: 'Maria', age: 30, city: 'Rio de Janeiro' },
     { name: 'Pedro', age: 35, city: 'Belo Horizonte' },
     { name: 'Ana', age: 28, city: 'Curitiba' },
