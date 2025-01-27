@@ -1,5 +1,7 @@
-<mat-form-field appearance="fill" [ngClass]="{ 'short-input': shortInput }">
-  <mat-label> {{ label }} </mat-label>
+<mat-form-field [appearance]="appearance" [ngClass]="{ 'short-input': shortStyle }">
+  		@if(!shortStyle) {
+			<mat-label> {{ label }} </mat-label>
+		}
 
 		@if(type === "number") {
 			<input matInput

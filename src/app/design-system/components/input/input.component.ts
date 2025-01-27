@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Optional, Self, SimpleChanges } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { ControlValueAccessor, FormControl, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
@@ -34,7 +34,8 @@ export class InputComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() allowNegativeNumbers: boolean = false;
   @Input() max: number = Infinity;
   @Input() min: number = 0;
-  @Input() shortInput: boolean = false;
+  @Input() shortStyle: boolean = false;
+  @Input() appearance: MatFormFieldAppearance = 'fill';
 
 
   private onChange: any = (value: any) => {};

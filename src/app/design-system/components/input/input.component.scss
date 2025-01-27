@@ -5,11 +5,12 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
 ::ng-deep .short-input .mat-mdc-form-field-infix {
-  padding-top: 3px !important;
-  padding-bottom: 2px !important;
-  min-height: 10px !important;
+  padding-top: 14px !important;
+}
+
+::ng-deep .short-input .mat-mdc-form-field-flex {
+  max-height: 46px !important;
 }
 
 ::ng-deep .short-input .mat-mdc-form-field-subscript-wrapper {
